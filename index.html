@@ -5,8 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barcode <-> Linecode</title>
     <script src="boleto-utils.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            $('#btn_barcode').click(function(){
+                let barcode = $('#barcode').val();
+                let linecode = codBarras2LinhaDigitavel(barcode);
+                $('#conv_barcode').html(linecode);
+            });
+            $('#btn_linecode').click(function(){
+                let linecode = $('#linecode').val();
+                let barcode = linhaDigitavel2CodBarras(linecode);
+                $('#conv_linecode').html(barcode);
+            });
+        }, false);
+    </script>
 </head>
 <body>
-    
+    <div>
+    Barcode: <input id="barcode" size="60">
+            <input type="button" id="btn_barcode" value="Converter para Linecode"/>
+            <b><span id="conv_barcode"></span></b>
+    </div>
+    <br>
+    <div>
+    Linecode: <input id="linecode" size="60">
+            <input type="button" id="btn_linecode" value="Converter para Barcode"/>
+            <b><span id="conv_linecode"></span></b>
+    </div>            
 </body>
 </html>
