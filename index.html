@@ -10,11 +10,19 @@
         window.addEventListener('load', function () {
             $('#btn_barcode').click(function(){
                 let barcode = $('#barcode').val();
+                if (barcode.length < 44) {
+                    alert('Informe um barcode válido (44 números)');
+                    return;
+                }
                 let linecode = codBarras2LinhaDigitavel(barcode);
                 $('#conv_barcode').html(linecode);
             });
             $('#btn_linecode').click(function(){
                 let linecode = $('#linecode').val();
+                if (linecode.length < 47) {
+                    alert('Informe um linecode válido (47 números)');
+                    return;
+                }
                 let barcode = linhaDigitavel2CodBarras(linecode);
                 $('#conv_linecode').html(barcode);
             });
@@ -23,13 +31,13 @@
 </head>
 <body>
     <div>
-    Barcode: <input id="barcode" size="60">
+    Barcode: <input id="barcode" size="60" maxlength="44">
             <input type="button" id="btn_barcode" value="Converter para Linecode"/>
             <b><span id="conv_barcode"></span></b>
     </div>
     <br>
     <div>
-    Linecode: <input id="linecode" size="60">
+    Linecode: <input id="linecode" size="60" maxlength="47">
             <input type="button" id="btn_linecode" value="Converter para Barcode"/>
             <b><span id="conv_linecode"></span></b>
     </div>            
